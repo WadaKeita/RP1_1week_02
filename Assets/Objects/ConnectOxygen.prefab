@@ -163,6 +163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectOxygenPrefab: {fileID: 6634543883464934692}
+  oxygenPrefab: {fileID: 6634543883464934692, guid: 75e9a7c5f6639c3459d66619da26d87b, type: 3}
+  gameManager: {fileID: 0}
+  isPlayerConnect: 0
 --- !u!114 &8548955217759521005
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,7 +27,8 @@ public class Player : MonoBehaviour
 
     private void OxygenShot(float power)
     {
-        GameObject objTmp = OxygenManager.OxygenStack.Pop();
+        GameObject objTmp = OxygenManager.OxygenList[OxygenManager.OxygenList.Count - 1];
+        OxygenManager.OxygenList.Remove(objTmp);
         // UŒ‚Ž_‘f‚ÌƒNƒ[ƒ“‚ðì¬
         GameObject clone = Instantiate(AttackOxygenPrefab, objTmp.transform.position, Quaternion.identity);
         Destroy(objTmp);
@@ -125,7 +126,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.JoystickButton5))
         {
-            if (OxygenManager.OxygenStack.Count >= 1)
+            if (OxygenManager.OxygenList.Count >= 1)
             {
                 OxygenShot(shotPower);
             }
@@ -133,7 +134,7 @@ public class Player : MonoBehaviour
         else if (Input.GetAxis("L_R_Trigger") > 0 && Rtrigger == false)
         {
             Rtrigger = true;
-            if (OxygenManager.OxygenStack.Count >= 1)
+            if (OxygenManager.OxygenList.Count >= 1)
             {
                 OxygenShot(shotPower);
             }

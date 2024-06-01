@@ -7,6 +7,7 @@ public class AttackOxygen : MonoBehaviour
 {
     public GameObject oxygenPrefab;
     public GameObject attackRB;
+    public GameObject gameManager;
 
     public float stopSpeed = 0.1f;
 
@@ -14,7 +15,20 @@ public class AttackOxygen : MonoBehaviour
     void Start()
     {
         //attackRB.GetComponent<Rigidbody>();
+        gameManager = GameManager.gameManager;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // ブラックホールに当たったらスコアになる
+        if (collision.gameObject.tag == ("BlackHole"))
+        {
+            gameManager.GetComponent<GameManager>().ScoreUP();
+
+            // 自分を削除
+            Destroy(this.gameObject);
+        }
+    }
+
 
     // Update is called once per frame
     void Update()

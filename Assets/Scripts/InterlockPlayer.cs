@@ -17,7 +17,7 @@ public class InterlockPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (player.transform.position != prePosition)
         {
