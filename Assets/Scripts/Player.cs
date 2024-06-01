@@ -7,12 +7,15 @@ public class Player : MonoBehaviour
     #region var-Player
     [Header("プレイヤー")]
     [SerializeField] public float moveSpeed = 5.0f;  // 移動速度
+    [SerializeField] public Vector3 startPos = new Vector3(2, 2, 0);  // 移動速度
     #endregion
+
+    public static GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        //GetComponent<Rigidbody2D>().velocity.y
+        transform.position = startPos;
     }
 
     private void PlayerMove()
@@ -65,16 +68,16 @@ public class Player : MonoBehaviour
 
         GetComponent<Rigidbody2D>().velocity = moveVelocity;
 
-        if (transform.position.x + transform.localScale.x / 2 > Camera.main.ViewportToWorldPoint(new Vector2(1, 0)).x)
-        {
+        //if (transform.position.x + transform.localScale.x / 2 > Camera.main.ViewportToWorldPoint(new Vector2(1, 0)).x)
+        //{
 
-            transform.position = new Vector3(Camera.main.ViewportToWorldPoint(new Vector2(1, 0)).x - transform.localScale.x / 2 - 0.01f, transform.position.y, 0);
-        }
-        if (transform.position.x - transform.localScale.x / 2 < Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).x)
-        {
-            transform.position = new Vector3(Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).x + (transform.localScale.x / 2) + 0.01f, transform.position.y, 0);
+        //    transform.position = new Vector3(Camera.main.ViewportToWorldPoint(new Vector2(1, 0)).x - transform.localScale.x / 2 - 0.01f, transform.position.y, 0);
+        //}
+        //if (transform.position.x - transform.localScale.x / 2 < Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).x)
+        //{
+        //    transform.position = new Vector3(Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).x + (transform.localScale.x / 2) + 0.01f, transform.position.y, 0);
 
-        }
+        //}
         // ------------------------------
 
         // ---------- ジャンプ ----------
@@ -92,5 +95,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerMove();
+
+        transform.position = MovementRange.movementRange.GetComponent<MovementRange>().ClampCircle(transform.position);
     }
 }

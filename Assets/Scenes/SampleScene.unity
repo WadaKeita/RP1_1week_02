@@ -152,7 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9e78dec8cdd0c4299b3b06debb5249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1070623101583579408, guid: f4d45a0e53463c24cbfb932050f7deba, type: 3}
+  playerPrefab: {fileID: 1070623101583579408, guid: f4d45a0e53463c24cbfb932050f7deba, type: 3}
+  movementRangePrefab: {fileID: 7199332283240749444, guid: 17f45f8872fd68b48a74c4c6cd146178, type: 3}
 --- !u!4 &45182978
 Transform:
   m_ObjectHideFlags: 0
@@ -162,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 45182976}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.33589688, y: 0.16228975, z: 0.03903657}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
