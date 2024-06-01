@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class InterlockPlayer : MonoBehaviour
+{
+    //public GameObject player;
+
+    private Vector3 prePosition;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        prePosition = Player.player.transform.position;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Player.player.transform.position != prePosition)
+        {
+            this.transform.position += Player.player.transform.position - prePosition;
+
+            prePosition = Player.player.transform.position;
+        }
+    }
+}

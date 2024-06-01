@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static GameObject player;
+
     #region var-Player
     [Header("プレイヤー")]
     [SerializeField] public float moveSpeed = 5.0f;  // 移動速度
     [SerializeField] public Vector3 startPos = new Vector3(2, 2, 0);  // 移動速度
     #endregion
 
-    public static GameObject player;
-
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = startPos;
+        player.GetComponent<GameObject>();
+        player.transform.position = startPos;
     }
+
 
     private void PlayerMove()
     {
@@ -96,6 +98,7 @@ public class Player : MonoBehaviour
     {
         PlayerMove();
 
+        // プレイヤーのポジションをmovementRangeの中に収める
         transform.position = MovementRange.movementRange.GetComponent<MovementRange>().ClampCircle(transform.position);
     }
 }
