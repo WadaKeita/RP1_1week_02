@@ -9,13 +9,13 @@ public class OxygenManager : MonoBehaviour
     public GameObject oxygenPrefab;
 
     #region var-Oxygen
-    [Header("_‘f")]
+    [Header("_‘fŠÇ—")]
     public int maxNumber = 10;  // _‘f‚ÌÅ‘å”
     public static int currentNumber = 0;  // Œ»İ‚ÌŒÂ”
     #endregion
 
     // ‚­‚Á‚Â‚¢‚½_‘f‚Ìî•ñ‚ğƒŠƒXƒg‚É“ü‚ê‚é
-    public static Stack<GameObject> OxygenList = new Stack<GameObject>();
+    public static Stack<GameObject> OxygenStack = new Stack<GameObject>();
 
 
     // Start is called before the first frame update

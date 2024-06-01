@@ -161,5 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b722351ad23ab04aae086f977fdf11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackOxygenPrefab: {fileID: 6634543883464934692, guid: 7342ed86f8c1aa547a3c083bdf96c911, type: 3}
   moveSpeed: 5
   startPos: {x: 0, y: -3, z: 0}
+  shotPower: 20

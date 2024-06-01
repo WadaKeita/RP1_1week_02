@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 4237533446606825674}
   - component: {fileID: 7217101710353473341}
   - component: {fileID: -6017918851388586628}
-  - component: {fileID: -4566649742203111491}
+  - component: {fileID: -5376515707925237802}
+  - component: {fileID: 8548955217759521005}
   m_Layer: 0
-  m_Name: Oxygen
-  m_TagString: Oxygen
+  m_Name: ConnectOxygen
+  m_TagString: ConnectOxygen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 382993c8feb12c94eaff11b33414fbf8, type: 3}
-  m_Color: {r: 0.13069598, g: 0.6121808, b: 0.8396226, a: 1}
+  m_Color: {r: 0.2672659, g: 0.735849, b: 0.43089056, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -149,7 +150,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-4566649742203111491
+--- !u!114 &-5376515707925237802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,8 +159,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6634543883464934692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6a84b3faa7d52049b32e76df7a0c3b6, type: 3}
+  m_Script: {fileID: 11500000, guid: ea6234e5064e8024b9c55a02e7f20e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isConnect: 0
-  connectOxygenPrefab: {fileID: 6634543883464934692, guid: b420989f215cb8546b9e8054657703ee, type: 3}
+  connectOxygenPrefab: {fileID: 6634543883464934692}
+--- !u!114 &8548955217759521005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634543883464934692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f96d97d70f8954888e7ef44e58f0e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
