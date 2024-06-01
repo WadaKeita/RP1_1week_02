@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Oxygen
+  - ConnectOxygen
+  - AttackOxygen
   layers:
   - Default
   - TransparentFX
