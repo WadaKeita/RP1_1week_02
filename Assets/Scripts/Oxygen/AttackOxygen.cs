@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 public class AttackOxygen : MonoBehaviour
 {
     public GameObject oxygenPrefab;
-    public GameObject attackRB;
     public GameObject gameManager;
 
     public float stopSpeed = 0.1f;

@@ -165,7 +165,7 @@ public class OxygenManager : MonoBehaviour
                         direction = clone.transform.position - player.transform.position;
                         direction = direction.normalized;
                     }
-                    clone.gameObject.GetComponent<Rigidbody2D>().velocity = direction * 5;
+                    clone.gameObject.GetComponent<Rigidbody2D>().velocity = direction * 2;
 
                     // Œq‚ª‚Á‚Ä‚¢‚é_‘f‚ğíœ
                     Destroy(oxy.gameObject);

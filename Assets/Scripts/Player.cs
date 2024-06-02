@@ -46,6 +46,35 @@ public class Player : MonoBehaviour
         //interlock.enabled = false;
     }
 
+    // é_ëfÇëSïîéËï˙Ç∑
+    private void OxygenLetgo()
+    {
+
+        for (int i = OxygenManager.OxygenList.Count; i > 0; i--)
+        {
+
+            GameObject oxy = OxygenManager.OxygenList[i - 1];
+
+            // ó£ÇÍÇΩé_ëfÇí èÌé_ëfÇ…Ç∑ÇÈ
+            GameObject clone = Instantiate(AttackOxygenPrefab, oxy.gameObject.transform.position, Quaternion.identity);
+
+            OxygenManager.OxygenList.Remove(oxy.gameObject);
+
+            Vector3 direction = Vector3.zero;
+            if (clone.transform.position != player.transform.position)
+            {
+                direction = clone.transform.position - player.transform.position;
+                direction = direction.normalized;
+            }
+            clone.gameObject.GetComponent<Rigidbody2D>().velocity = direction * 2;
+
+            // åqÇ™Ç¡ÇƒÇ¢ÇÈé_ëfÇçÌèú
+            Destroy(oxy.gameObject);
+            Debug.Log("SKUJO!!!!");
+
+        }
+    }
+
     private void PlayerMove()
     {
         // ---------- à⁄ìÆ ----------
@@ -129,6 +158,13 @@ public class Player : MonoBehaviour
             if (OxygenManager.OxygenList.Count >= 1)
             {
                 OxygenShot(shotPower);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.JoystickButton2))
+        {
+            if (OxygenManager.OxygenList.Count >= 1)
+            {
+                OxygenLetgo();
             }
         }
         else if (Input.GetAxis("L_R_Trigger") > 0 && Rtrigger == false)
