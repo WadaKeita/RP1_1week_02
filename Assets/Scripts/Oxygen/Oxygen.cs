@@ -61,22 +61,22 @@ public class Oxygen : MonoBehaviour
     void LateUpdate()
     {
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        float distance;
-        distance = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
-        float radius = (this.gameObject.transform.localScale.x / 2) + (player.transform.localScale.x / 2);
+        //float distance;
+        //distance = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
+        //float radius = (this.gameObject.transform.localScale.x / 2) + (player.transform.localScale.x / 2);
 
-        if (distance <= radius)
-        {
-            // ƒvƒŒƒCƒ„[‚É•t‚¢‚Ä‚¢‚éŽ_‘f‚ðì¬
-            GameObject clone = Instantiate(connectOxygenPrefab, this.gameObject.transform.position, Quaternion.identity);
-            // Ž_‘f‚ðíœ
-            Destroy(this.gameObject);
+        //if (distance <= radius)
+        //{
+        //    // ƒvƒŒƒCƒ„[‚É•t‚¢‚Ä‚¢‚éŽ_‘f‚ðì¬
+        //    GameObject clone = Instantiate(connectOxygenPrefab, this.gameObject.transform.position, Quaternion.identity);
+        //    // Ž_‘f‚ðíœ
+        //    Destroy(this.gameObject);
 
-            // Ž_‘f‚Ìî•ñ‚ðƒXƒ^ƒbƒN‚·‚é
-            OxygenManager.OxygenList.Add(clone.gameObject);
-        }
+        //    // Ž_‘f‚Ìî•ñ‚ðƒXƒ^ƒbƒN‚·‚é
+        //    OxygenManager.OxygenList.Add(clone.gameObject);
+        //}
 
         //if (collision.gameObject.tag == ("Player") && isConnect == false)
         //{

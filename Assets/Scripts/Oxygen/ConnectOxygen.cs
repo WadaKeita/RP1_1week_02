@@ -8,7 +8,7 @@ public class ConnectOxygen : MonoBehaviour
     public GameObject oxygenPrefab;
     public GameObject gameManager;
 
-    public static bool isPlayerConnect;
+    public bool isPlayerConnect;
     //public bool isOxygenConnect;
 
     // Start is called before the first frame update
@@ -75,29 +75,33 @@ public class ConnectOxygen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        GameObject[] oxygens = null;
-        if (oxygens == null)
+        if (isPlayerConnect)
         {
-            oxygens = GameObject.FindGameObjectsWithTag("Oxygen");
+            Debug.Log("‚Â‚È‚ª‚è‚ðŠ´‚¶‚é");
         }
-        foreach (GameObject oxygen in oxygens)
-        {
-            float distance;
-            distance = Vector2.Distance(oxygen.transform.position, this.gameObject.transform.position);
-            float radius = (this.gameObject.transform.localScale.x / 2) + (oxygen.transform.localScale.x / 2);
 
-            if (distance <= radius)
-            {
-                // ƒvƒŒƒCƒ„[‚É•t‚¢‚Ä‚¢‚éŽ_‘f‚ðì¬
-                GameObject clone = Instantiate(connectOxygenPrefab, oxygen.gameObject.transform.position, Quaternion.identity);
-                // Ž_‘f‚ðíœ
-                Destroy(oxygen.gameObject);
+        //GameObject[] oxygens = null;
+        //if (oxygens == null)
+        //{
+        //    oxygens = GameObject.FindGameObjectsWithTag("Oxygen");
+        //}
+        //foreach (GameObject oxygen in oxygens)
+        //{
+        //    float distance;
+        //    distance = Vector2.Distance(oxygen.transform.position, this.gameObject.transform.position);
+        //    float radius = (this.gameObject.transform.localScale.x / 2) + (oxygen.transform.localScale.x / 2);
 
-                // Ž_‘f‚Ìî•ñ‚ðƒXƒ^ƒbƒN‚·‚é
-                OxygenManager.OxygenList.Add(clone.gameObject);
-            }
-        }
+        //    if (distance <= radius)
+        //    {
+        //        // ƒvƒŒƒCƒ„[‚É•t‚¢‚Ä‚¢‚éŽ_‘f‚ðì¬
+        //        GameObject clone = Instantiate(connectOxygenPrefab, oxygen.gameObject.transform.position, Quaternion.identity);
+        //        // Ž_‘f‚ðíœ
+        //        Destroy(oxygen.gameObject);
+
+        //        // Ž_‘f‚Ìî•ñ‚ðƒXƒ^ƒbƒN‚·‚é
+        //        OxygenManager.OxygenList.Add(clone.gameObject);
+        //    }
+        //}
 
         //// Ž_‘f‚É“–‚½‚Á‚½‚ç“–‚½‚Á‚½Ž_‘f‚ªŒq‚ª‚é
         //if (collision.gameObject.tag == ("Oxygen") && collision.GetComponent<Oxygen>().GetIsConnect() == false)
