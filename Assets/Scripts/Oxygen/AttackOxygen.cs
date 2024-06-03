@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class AttackOxygen : MonoBehaviour
 {
     public GameObject oxygenPrefab;
-    public GameObject gameManager;
+    public GameObject scoreManager;
 
     public float stopSpeed = 0.1f;
 
@@ -14,14 +15,14 @@ public class AttackOxygen : MonoBehaviour
     void Start()
     {
         //attackRB.GetComponent<Rigidbody>();
-        gameManager = GameManager.gameManager;
+        scoreManager = ScoreManager.scoreManager;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // ブラックホールに当たったらスコアになる
         if (collision.gameObject.tag == ("BlackHole"))
         {
-            gameManager.GetComponent<GameManager>().ScoreUP();
+            scoreManager.GetComponent<ScoreManager>().ScoreUP();
 
             // 自分を削除
             Destroy(this.gameObject);

@@ -106,6 +106,7 @@ public class OxygenManager : MonoBehaviour
         // 繋がってる酸素たちの判定を求める
         if (OxygenList.Count > 0)
         {
+
             for (int i = 0; i < OxygenList.Count; i++)
             {
                 //Debug.Log(OxygenList[i]);
@@ -113,6 +114,12 @@ public class OxygenManager : MonoBehaviour
                 GameObject oxy = OxygenList[i];
 
                 oxy.GetComponent<ConnectOxygen>().SetIsPlayerConnect(false);
+            }
+            for (int i = 0; i < OxygenList.Count; i++)
+            {
+                //Debug.Log(OxygenList[i]);
+
+                GameObject oxy = OxygenList[i];
 
                 // プレイヤーとぶつかっていたらプレイヤーコネクトをtrueにする
                 float distance = Vector2.Distance(player.transform.position, oxy.transform.position);

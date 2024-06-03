@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConnectOxygen : MonoBehaviour
 {
-    public GameObject gameManager;
+    public GameObject scoreManager;
 
     public bool isPlayerConnect;
     //public bool isOxygenConnect;
@@ -12,7 +12,7 @@ public class ConnectOxygen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameManager.gameManager;
+        scoreManager = ScoreManager.scoreManager;
         isPlayerConnect = false;
         //isOxygenConnect = false;
     }
@@ -23,7 +23,7 @@ public class ConnectOxygen : MonoBehaviour
         {
             isPlayerConnect = false;
 
-            gameManager.GetComponent<GameManager>().ScoreUP();
+            scoreManager.GetComponent<ScoreManager>().ScoreUP();
 
             OxygenManager.OxygenList.Remove(this.gameObject);
             // ©•ª‚ğíœ
