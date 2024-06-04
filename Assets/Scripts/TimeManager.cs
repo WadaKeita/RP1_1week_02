@@ -15,7 +15,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] public float elapsedTime;  // Œ»İ‚ÌŒo‰ßŠÔ
     #endregion
 
-    public GameObject gameManager;
+    //public GameObject gameManager;
 
     public static GameObject timeManager;
 
@@ -24,7 +24,7 @@ public class TimeManager : MonoBehaviour
     {
         Timetext.text = "TimeF" + timeLimit;
 
-        gameManager = GameManager.gameManager;
+        //gameManager = GameManager.gameManager;
 
         timeManager = this.gameObject;
     }
@@ -34,7 +34,8 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.GetComponent<GameManager>().GetIsClear() == false)
+        GameObject gameManager = GameManager.gameManager;
+        if (gameManager.GetComponent<GameManager>().GetIsEnd() == false)
         {
             elapsedTime += Time.deltaTime;
 
@@ -43,7 +44,7 @@ public class TimeManager : MonoBehaviour
             {
                 // ‰z‚¦‚Ä‚¢‚½‚çisClear‚ğtrue‚É‚·‚é
                 elapsedTime = timeLimit;
-                gameManager.GetComponent<GameManager>().SetIsClear(true);
+                gameManager.GetComponent<GameManager>().SetIsEnd(true);
             }
 
             Timetext.text = "TimeF" + Mathf.Ceil(timeLimit - elapsedTime);

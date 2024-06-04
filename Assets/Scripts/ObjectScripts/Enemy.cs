@@ -30,9 +30,21 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "BlackHole")
+        if (collision.gameObject.tag == "BlackHole")
         {
             nowState = Status.STEAL;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "BlackHole")
+        {
+            if (nowState != Status.ESCAPE)
+            {
+                nowState = Status.MOVE;
+                currentTime = 0;
+            }
         }
     }
 
@@ -78,7 +90,7 @@ public class Enemy : MonoBehaviour
 
                 GetComponent<Rigidbody2D>().velocity = moveVelocity;
 
-                if(escapeDistance > moveDistance)
+                if (escapeDistance > moveDistance)
                 {
                     Destroy(gameObject);
                 }

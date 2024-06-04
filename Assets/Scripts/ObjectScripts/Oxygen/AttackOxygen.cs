@@ -38,26 +38,35 @@ public class AttackOxygen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<Rigidbody2D>().velocity.x * GetComponent<Rigidbody2D>().velocity.x <= 0.1f &&
-            GetComponent<Rigidbody2D>().velocity.y * GetComponent<Rigidbody2D>().velocity.y <= 0.1f)
+
+        GameObject gameManager = GameManager.gameManager;
+        if (gameManager.GetComponent<GameManager>().GetIsEnd() == false)
         {
-            // 通常酸素のクローンを作成
-            GameObject clone = Instantiate(oxygenPrefab, this.transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            if (GetComponent<Rigidbody2D>().velocity.x * GetComponent<Rigidbody2D>().velocity.x <= 0.1f &&
+            GetComponent<Rigidbody2D>().velocity.y * GetComponent<Rigidbody2D>().velocity.y <= 0.1f)
+            {
+                // 通常酸素のクローンを作成
+                GameObject clone = Instantiate(oxygenPrefab, this.transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+            }
+
+
+            // 攻撃酸素のポジションをmovementRangeの中に収める
+            Vector3 tmp = MovementRange.movementRange.GetComponent<MovementRange>().ClampCircle(transform.position);
+
+            // 端っこまで行ったらはじかれる
+            if (transform.position.x != tmp.x) { GetComponent<Rigidbody2D>().velocity = new Vector2(-tmp.x, GetComponent<Rigidbody2D>().velocity.y); }
+            if (transform.position.y != tmp.y) { GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -tmp.y); }
+
+            // 端っこまで行ったら止まる
+            //if (transform.position.x != tmp.x) { GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y); }
+            //if (transform.position.y != tmp.y) { GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0); }
+
+            transform.position = tmp;
         }
-
-
-        // 攻撃酸素のポジションをmovementRangeの中に収める
-        Vector3 tmp = MovementRange.movementRange.GetComponent<MovementRange>().ClampCircle(transform.position);
-
-        // 端っこまで行ったらはじかれる
-        if (transform.position.x != tmp.x) { GetComponent<Rigidbody2D>().velocity = new Vector2(-tmp.x, GetComponent<Rigidbody2D>().velocity.y); }
-        if (transform.position.y != tmp.y) { GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -tmp.y); }
-
-        // 端っこまで行ったら止まる
-        //if (transform.position.x != tmp.x) { GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y); }
-        //if (transform.position.y != tmp.y) { GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0); }
-
-        transform.position = tmp;
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
     }
 }

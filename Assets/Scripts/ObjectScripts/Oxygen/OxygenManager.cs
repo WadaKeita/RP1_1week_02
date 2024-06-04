@@ -33,143 +33,147 @@ public class OxygenManager : MonoBehaviour
     void LateUpdate()
     {
 
-        GameObject[] oxygens = null;
-        if (oxygens == null)
+        GameObject gameManager = GameManager.gameManager;
+        if (gameManager.GetComponent<GameManager>().GetIsEnd() == false)
         {
-            oxygens = GameObject.FindGameObjectsWithTag("Oxygen");
-        }
-        foreach (GameObject oxygen in oxygens)
-        {
-            float distance = Vector2.Distance(player.transform.position, oxygen.transform.position);
-            float radius = (player.transform.localScale.x / 2) + (oxygen.transform.localScale.x / 2);
-
-            if (distance <= radius)
+            GameObject[] oxygens = null;
+            if (oxygens == null)
             {
-                if (oxygen != null && oxygen.GetComponent<Oxygen>().GetIsConnect() == false)
-                {
-                    // ƒvƒŒƒCƒ„[‚É•t‚¢‚Ä‚¢‚é_‘f‚ğì¬
-                    GameObject clone = Instantiate(connectOxygenPrefab, oxygen.gameObject.transform.position, Quaternion.identity);
-
-                    oxygen.GetComponent<Oxygen>().SetIsConnect(true);
-
-                    // _‘f‚ğíœ
-                    Destroy(oxygen.gameObject);
-
-                    // _‘f‚Ìî•ñ‚ğƒXƒ^ƒbƒN‚·‚é
-                    OxygenList.Add(clone.gameObject);
-
-                    Debug.Log("‚±‚±‚Å‘‚¦‚½‚ñ‚æ‡@");
-                }
+                oxygens = GameObject.FindGameObjectsWithTag("Oxygen");
             }
-        }
-
-        GameObject[] connects = null;
-        if (connects == null)
-        {
-            connects = GameObject.FindGameObjectsWithTag("ConnectOxygen");
-        }
-        foreach (GameObject connect in connects)
-        {
-            GameObject[] oxys = null;
-            if (oxys == null)
+            foreach (GameObject oxygen in oxygens)
             {
-                oxys = GameObject.FindGameObjectsWithTag("Oxygen");
-            }
-            foreach (GameObject oxy in oxys)
-            {
-                float distance;
-                distance = Vector2.Distance(connect.transform.position, oxy.gameObject.transform.position);
-                float radius = (connect.gameObject.transform.localScale.x / 2) + (oxy.transform.localScale.x / 2);
+                float distance = Vector2.Distance(player.transform.position, oxygen.transform.position);
+                float radius = (player.transform.localScale.x / 2) + (oxygen.transform.localScale.x / 2);
 
                 if (distance <= radius)
                 {
-                    if (oxy != null && oxy.GetComponent<Oxygen>().GetIsConnect() == false)
+                    if (oxygen != null && oxygen.GetComponent<Oxygen>().GetIsConnect() == false)
                     {
                         // ƒvƒŒƒCƒ„[‚É•t‚¢‚Ä‚¢‚é_‘f‚ğì¬
-                        GameObject clone = Instantiate(connectOxygenPrefab, oxy.gameObject.transform.position, Quaternion.identity);
+                        GameObject clone = Instantiate(connectOxygenPrefab, oxygen.gameObject.transform.position, Quaternion.identity);
 
-                        oxy.GetComponent<Oxygen>().SetIsConnect(true);
+                        oxygen.GetComponent<Oxygen>().SetIsConnect(true);
 
                         // _‘f‚ğíœ
-                        Destroy(oxy.gameObject);
+                        Destroy(oxygen.gameObject);
 
                         // _‘f‚Ìî•ñ‚ğƒXƒ^ƒbƒN‚·‚é
                         OxygenList.Add(clone.gameObject);
-                        Debug.Log("‚±‚±‚Å‘‚¦‚½‚ñ‚æ‡A");
+
+                        Debug.Log("‚±‚±‚Å‘‚¦‚½‚ñ‚æ‡@");
                     }
                 }
             }
-        }
 
-        // Œq‚ª‚Á‚Ä‚é_‘f‚½‚¿‚Ì”»’è‚ğ‹‚ß‚é
-        if (OxygenList.Count > 0)
-        {
-
-            for (int i = 0; i < OxygenList.Count; i++)
+            GameObject[] connects = null;
+            if (connects == null)
             {
-                GameObject oxy = OxygenList[i];
-
-                oxy.GetComponent<ConnectOxygen>().SetIsPlayerConnect(false);
+                connects = GameObject.FindGameObjectsWithTag("ConnectOxygen");
             }
-            for (int i = 0; i < OxygenList.Count; i++)
+            foreach (GameObject connect in connects)
             {
-                GameObject oxy = OxygenList[i];
-
-                // ƒvƒŒƒCƒ„[‚Æ‚Ô‚Â‚©‚Á‚Ä‚¢‚½‚çƒvƒŒƒCƒ„[ƒRƒlƒNƒg‚ğtrue‚É‚·‚é
-                float distance = Vector2.Distance(player.transform.position, oxy.transform.position);
-                float radius = (player.transform.localScale.x / 2) + (oxy.transform.localScale.x / 2);
-                if (distance <= radius)
+                GameObject[] oxys = null;
+                if (oxys == null)
                 {
-                    oxy.GetComponent<ConnectOxygen>().SetIsPlayerConnect(true);
+                    oxys = GameObject.FindGameObjectsWithTag("Oxygen");
                 }
-
-                for (int j = 0; j < OxygenList.Count; j++)
+                foreach (GameObject oxy in oxys)
                 {
-                    GameObject oxygen = OxygenList[j];
+                    float distance;
+                    distance = Vector2.Distance(connect.transform.position, oxy.gameObject.transform.position);
+                    float radius = (connect.gameObject.transform.localScale.x / 2) + (oxy.transform.localScale.x / 2);
 
-                    if (oxy != oxygen)
+                    if (distance <= radius)
                     {
-                        distance = Vector2.Distance(oxy.transform.position, oxygen.transform.position);
-                        radius = (oxygen.transform.localScale.x / 2) + (oxy.transform.localScale.x / 2);
-                        if (distance <= radius)
+                        if (oxy != null && oxy.GetComponent<Oxygen>().GetIsConnect() == false)
                         {
-                            if (oxygen.GetComponent<ConnectOxygen>().GetIsPlayerConnect())
-                            {
-                                oxy.GetComponent<ConnectOxygen>().SetIsPlayerConnect(true);
-                            }
+                            // ƒvƒŒƒCƒ„[‚É•t‚¢‚Ä‚¢‚é_‘f‚ğì¬
+                            GameObject clone = Instantiate(connectOxygenPrefab, oxy.gameObject.transform.position, Quaternion.identity);
+
+                            oxy.GetComponent<Oxygen>().SetIsConnect(true);
+
+                            // _‘f‚ğíœ
+                            Destroy(oxy.gameObject);
+
+                            // _‘f‚Ìî•ñ‚ğƒXƒ^ƒbƒN‚·‚é
+                            OxygenList.Add(clone.gameObject);
+                            Debug.Log("‚±‚±‚Å‘‚¦‚½‚ñ‚æ‡A");
                         }
                     }
                 }
             }
 
-            for (int i = 0; i < OxygenList.Count; i++)
+            // Œq‚ª‚Á‚Ä‚é_‘f‚½‚¿‚Ì”»’è‚ğ‹‚ß‚é
+            if (OxygenList.Count > 0)
             {
 
-                GameObject oxy = OxygenList[i];
-                Debug.Log(oxy.GetComponent<ConnectOxygen>().GetIsPlayerConnect());
-            }
-
-            for (int i = 0; i < OxygenList.Count; i++)
-            {
-
-                GameObject oxy = OxygenList[i];
-                if (!oxy.GetComponent<ConnectOxygen>().GetIsPlayerConnect())
+                for (int i = 0; i < OxygenList.Count; i++)
                 {
-                    // —£‚ê‚½_‘f‚ğ’Êí_‘f‚É‚·‚é
-                    GameObject clone = Instantiate(attackOxygenPrefab, oxy.gameObject.transform.position, Quaternion.identity);
+                    GameObject oxy = OxygenList[i];
 
-                    OxygenList.Remove(oxy.gameObject);
+                    oxy.GetComponent<ConnectOxygen>().SetIsPlayerConnect(false);
+                }
+                for (int i = 0; i < OxygenList.Count; i++)
+                {
+                    GameObject oxy = OxygenList[i];
 
-                    Vector3 direction = Vector3.zero;
-                    if (clone.transform.position != player.transform.position)
+                    // ƒvƒŒƒCƒ„[‚Æ‚Ô‚Â‚©‚Á‚Ä‚¢‚½‚çƒvƒŒƒCƒ„[ƒRƒlƒNƒg‚ğtrue‚É‚·‚é
+                    float distance = Vector2.Distance(player.transform.position, oxy.transform.position);
+                    float radius = (player.transform.localScale.x / 2) + (oxy.transform.localScale.x / 2);
+                    if (distance <= radius)
                     {
-                        direction = clone.transform.position - player.transform.position;
-                        direction = direction.normalized;
+                        oxy.GetComponent<ConnectOxygen>().SetIsPlayerConnect(true);
                     }
-                    clone.gameObject.GetComponent<Rigidbody2D>().velocity = direction * 2;
 
-                    // Œq‚ª‚Á‚Ä‚¢‚é_‘f‚ğíœ
-                    Destroy(oxy.gameObject);
+                    for (int j = 0; j < OxygenList.Count; j++)
+                    {
+                        GameObject oxygen = OxygenList[j];
+
+                        if (oxy != oxygen)
+                        {
+                            distance = Vector2.Distance(oxy.transform.position, oxygen.transform.position);
+                            radius = (oxygen.transform.localScale.x / 2) + (oxy.transform.localScale.x / 2);
+                            if (distance <= radius)
+                            {
+                                if (oxygen.GetComponent<ConnectOxygen>().GetIsPlayerConnect())
+                                {
+                                    oxy.GetComponent<ConnectOxygen>().SetIsPlayerConnect(true);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //for (int i = 0; i < OxygenList.Count; i++)
+                //{
+
+                //    GameObject oxy = OxygenList[i];
+                //    //Debug.Log(oxy.GetComponent<ConnectOxygen>().GetIsPlayerConnect());
+                //}
+
+                for (int i = 0; i < OxygenList.Count; i++)
+                {
+
+                    GameObject oxy = OxygenList[i];
+                    if (!oxy.GetComponent<ConnectOxygen>().GetIsPlayerConnect())
+                    {
+                        // —£‚ê‚½_‘f‚ğ’Êí_‘f‚É‚·‚é
+                        GameObject clone = Instantiate(attackOxygenPrefab, oxy.gameObject.transform.position, Quaternion.identity);
+
+                        OxygenList.Remove(oxy.gameObject);
+
+                        Vector3 direction = Vector3.zero;
+                        if (clone.transform.position != player.transform.position)
+                        {
+                            direction = clone.transform.position - player.transform.position;
+                            direction = direction.normalized;
+                        }
+                        clone.gameObject.GetComponent<Rigidbody2D>().velocity = direction * 2;
+
+                        // Œq‚ª‚Á‚Ä‚¢‚é_‘f‚ğíœ
+                        Destroy(oxy.gameObject);
+                    }
                 }
             }
         }

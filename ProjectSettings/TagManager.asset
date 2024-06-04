@@ -7,6 +7,9 @@ TagManager:
   - Oxygen
   - ConnectOxygen
   - AttackOxygen
+  - BlackHole
+  - Enemy
+  - oxy_BH
   layers:
   - Default
   - TransparentFX
@@ -16,13 +19,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Oxygen
+  - ConnectOxygen
+  - AttackOxygen
+  - BlackHole
+  - oxy_BH
   - 
   - 
   - 

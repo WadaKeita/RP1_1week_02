@@ -19,11 +19,13 @@ public class Player : MonoBehaviour
 
     bool Rtrigger = false;
 
+    //public GameObject gameManager;
     // Start is called before the first frame update
     void Start()
     {
         player.GetComponent<GameObject>();
         player.transform.position = startPos;
+        //gameManager = GameManager.gameManager;
     }
     private void OxygenShot(float power)
     {
@@ -96,41 +98,50 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMove();
 
-        if (Input.GetKeyDown(KeyCode.JoystickButton5))
+        GameObject gameManager = GameManager.gameManager;
+        if (gameManager.GetComponent<GameManager>().GetIsEnd() == false)
         {
-            if (OxygenManager.OxygenList.Count >= 1)
+            PlayerMove();
+
+            if (Input.GetKeyDown(KeyCode.JoystickButton5))
             {
-                OxygenShot(shotPower);
+                if (OxygenManager.OxygenList.Count >= 1)
+                {
+                    OxygenShot(shotPower);
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.JoystickButton2))
-        {
-            if (OxygenManager.OxygenList.Count >= 1)
+            if (Input.GetKeyDown(KeyCode.JoystickButton2))
             {
-                OxygenLetgo();
+                if (OxygenManager.OxygenList.Count >= 1)
+                {
+                    OxygenLetgo();
+                }
             }
-        }
-        else if (Input.GetAxis("L_R_Trigger") > 0 && Rtrigger == false)
-        {
-            Rtrigger = true;
-            if (OxygenManager.OxygenList.Count >= 1)
+            else if (Input.GetAxis("L_R_Trigger") > 0 && Rtrigger == false)
             {
-                OxygenShot(shotPower);
+                Rtrigger = true;
+                if (OxygenManager.OxygenList.Count >= 1)
+                {
+                    OxygenShot(shotPower);
+                }
             }
+            if (Input.GetAxis("L_R_Trigger") == 0 && Rtrigger == true)
+            {
+                Rtrigger = false;
+            }
+
+            // プレイヤーのポジションをmovementRangeの中に収める
+            Vector3 tmp = MovementRange.movementRange.GetComponent<MovementRange>().ClampCircle(transform.position);
+
+            if (transform.position.x != tmp.x) { GetComponent<Rigidbody2D>().velocity = new Vector2(-tmp.x, GetComponent<Rigidbody2D>().velocity.y); }
+            if (transform.position.y != tmp.y) { GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -tmp.y); }
+
+            transform.position = tmp;
         }
-        if (Input.GetAxis("L_R_Trigger") == 0 && Rtrigger == true)
+        else
         {
-            Rtrigger = false;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
-
-        // プレイヤーのポジションをmovementRangeの中に収める
-        Vector3 tmp = MovementRange.movementRange.GetComponent<MovementRange>().ClampCircle(transform.position);
-
-        if (transform.position.x != tmp.x) { GetComponent<Rigidbody2D>().velocity = new Vector2(-tmp.x, GetComponent<Rigidbody2D>().velocity.y); }
-        if (transform.position.y != tmp.y) { GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -tmp.y); }
-
-        transform.position = tmp;
     }
 }

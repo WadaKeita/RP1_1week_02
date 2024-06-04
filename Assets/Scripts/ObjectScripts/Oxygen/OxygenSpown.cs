@@ -76,27 +76,31 @@ public class OxygenSpown : MonoBehaviour
     void Update()
     {
 
-        if (isStartSpown)
+        GameObject gameManager = GameManager.gameManager;
+        if (gameManager.GetComponent<GameManager>().GetIsEnd() == false)
         {
-            for (int i = 0; i < 10; i++)
+            if (isStartSpown)
             {
+                for (int i = 0; i < 10; i++)
+                {
+                    SpownOxygen();
+                }
+                isStartSpown = false;
+            }
+
+            // クールタイムの計算
+            currentTime += Time.deltaTime;
+            if (currentTime >= spownDelay)
+            {
+                currentTime = 0;
+
+                // 次のクールタイムをセット
+                UnityEngine.Random.InitState(DateTime.Now.Millisecond);
+                spownDelay = UnityEngine.Random.Range(spownDelayMin, spownDelayMax);
+
+                // ランダム生成
                 SpownOxygen();
             }
-            isStartSpown = false;
-        }
-
-        // クールタイムの計算
-        currentTime += Time.deltaTime;
-        if (currentTime >= spownDelay)
-        {
-            currentTime = 0;
-
-            // 次のクールタイムをセット
-            UnityEngine.Random.InitState(DateTime.Now.Millisecond);
-            spownDelay = UnityEngine.Random.Range(spownDelayMin, spownDelayMax);
-
-            // ランダム生成
-            SpownOxygen();
         }
     }
 }

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject blackHolePrefab;
     public GameObject blackHoleChargePrefab;
 
-    public bool isClear = false;
+    public bool isEnd = false;
 
     public static GameObject gameManager;
 
@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
         gameManager = this.gameObject;
     }
 
-    public void SetIsClear(bool clear) { isClear = clear; }
-    public bool GetIsClear() { return isClear; }
+    public void SetIsEnd(bool clear) { isEnd = clear; }
+    public bool GetIsEnd() { return isEnd; }
 
     // Update is called once per frame
     void Update()
