@@ -99,10 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468b741a68863d14294567ff572b0e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialPosition: {x: 0, y: 0, z: 0}
   moveSpeed: 5
   stealTime: 5
   currentTime: 0
+  enemyDamagePrefab: {fileID: 468485779355879613, guid: a7f34087d23ab0644bfe686f13d96bed, type: 3}
 --- !u!50 &8231453978338693325
 Rigidbody2D:
   serializedVersion: 4
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &-5136538274717742262
 CircleCollider2D:
   m_ObjectHideFlags: 0

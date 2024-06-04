@@ -9,6 +9,7 @@ public class MovementRange : MonoBehaviour
     [SerializeField] private float _maxRadius = 1;
 
     public static GameObject movementRange;
+    public static float movementRadius;
 
     // Start is called before the first frame update
     void Awake()
@@ -16,6 +17,8 @@ public class MovementRange : MonoBehaviour
         transform.localScale = new Vector3(_maxRadius * 2, _maxRadius * 2, 0);
 
         movementRange = this.gameObject;
+
+        movementRadius = _maxRadius;
     }
 
     public Vector3 ClampCircle(Vector3 position)

@@ -61,7 +61,7 @@ public class OxygenManager : MonoBehaviour
                         // _‘f‚Ìî•ñ‚ğƒXƒ^ƒbƒN‚·‚é
                         OxygenList.Add(clone.gameObject);
 
-                        Debug.Log("‚±‚±‚Å‘‚¦‚½‚ñ‚æ‡@");
+                        //Debug.Log("‚±‚±‚Å‘‚¦‚½‚ñ‚æ‡@");
                     }
                 }
             }
@@ -98,7 +98,7 @@ public class OxygenManager : MonoBehaviour
 
                             // _‘f‚Ìî•ñ‚ğƒXƒ^ƒbƒN‚·‚é
                             OxygenList.Add(clone.gameObject);
-                            Debug.Log("‚±‚±‚Å‘‚¦‚½‚ñ‚æ‡A");
+                            //Debug.Log("‚±‚±‚Å‘‚¦‚½‚ñ‚æ‡A");
                         }
                     }
                 }
