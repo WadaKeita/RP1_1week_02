@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,9 +16,15 @@ public class OxygenManager : MonoBehaviour
 
     #region var-Oxygen
     [Header("_‘fŠÇ—")]
-    public int maxNumber = 10;  // _‘f‚ÌÅ‘å”
-    public static int currentNumber = 0;  // Œ»İ‚ÌŒÂ”
+    public int targetNumber = 100;  // ”[•i‚Ì–Ú•W”
+    public int getNumber = 0;  // ”[•i‚µ‚½”
+    public int fieldMaxNumber = 30;  // _‘f‚ÌÅ‘å”
+    public int currentNumber = 0;  // Œ»İ‚ÌŒÂ”
     #endregion
+
+    public static int targetNum;
+    public static int fieldMax;
+    public static GameObject oxyManager;
 
     // ‚­‚Á‚Â‚¢‚½_‘f‚Ìî•ñ‚ğƒŠƒXƒg‚É“ü‚ê‚é
     public static List<GameObject> OxygenList = new List<GameObject>();
@@ -27,7 +34,70 @@ public class OxygenManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         OxygenList.Clear();
+
+        oxyManager = this.gameObject;
+        fieldMax = fieldMaxNumber;
+        targetNum = targetNumber;
     }
+
+    public int CountOxygen()
+    {
+        currentNumber = 0;
+
+        // ’Êí_‘f‚Ì”
+        GameObject[] oxys = null;
+        if (oxys == null)
+        {
+            oxys = GameObject.FindGameObjectsWithTag("Oxygen");
+        }
+        foreach (GameObject oxy in oxys)
+        {
+            currentNumber++;
+        }
+
+        // UŒ‚_‘f‚Ì”
+        oxys = null;
+        if (oxys == null)
+        {
+            oxys = GameObject.FindGameObjectsWithTag("AttackOxygen");
+        }
+        foreach (GameObject oxy in oxys)
+        {
+            currentNumber++;
+        }
+
+        // Ú‘±_‘f‚Ì”
+        oxys = null;
+        if (oxys == null)
+        {
+            oxys = GameObject.FindGameObjectsWithTag("ConnectOxygen");
+        }
+        foreach (GameObject oxy in oxys)
+        {
+            currentNumber++;
+        }
+
+        return currentNumber;
+    }
+
+    public void OxygenNumUP()
+    {
+        getNumber++;
+    }
+    public void OxygenNumDOWN()
+    {
+        getNumber--;
+        if (getNumber < 0)
+        {
+            getNumber = 0;
+        }
+    }
+
+    public int GetGetNumber()
+    {
+        return getNumber;
+    }
+
 
     // Update is called once per frame
     void LateUpdate()
@@ -145,12 +215,6 @@ public class OxygenManager : MonoBehaviour
                     }
                 }
 
-                //for (int i = 0; i < OxygenList.Count; i++)
-                //{
-
-                //    GameObject oxy = OxygenList[i];
-                //    //Debug.Log(oxy.GetComponent<ConnectOxygen>().GetIsPlayerConnect());
-                //}
 
                 for (int i = 0; i < OxygenList.Count; i++)
                 {

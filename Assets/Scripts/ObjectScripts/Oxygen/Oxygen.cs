@@ -21,6 +21,10 @@ public class Oxygen : MonoBehaviour
             GameObject obj = ScoreManager.scoreManager;
             obj.GetComponent<ScoreManager>().ScoreUP();
 
+            // 納品数を増加
+            obj = OxygenManager.oxyManager;
+            obj.GetComponent<OxygenManager>().OxygenNumUP();
+
             // ブラックホールのチャージを増加
             obj = BlackHole.blackHole;
             obj.GetComponent<BlackHole>().ChargePercentageUP();

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject blackHoleChargePrefab;
 
     public bool isEnd = false;
+    public bool isClear = false;
 
     public static GameObject gameManager;
 
@@ -35,6 +36,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isClear == false)
+        {
+
+            GameObject obj = OxygenManager.oxyManager;
+            if (obj.GetComponent<OxygenManager>().GetGetNumber() >= OxygenManager.targetNum)
+            {
+                isClear = true;
+                isEnd = true;
+            }
+        }
+
         //if(isEnd)
         //{
         //    GameObject obj = FadeSceneLoader.fadeSceneLoader;

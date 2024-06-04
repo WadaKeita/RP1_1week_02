@@ -329,6 +329,7 @@ MonoBehaviour:
   blackHolePrefab: {fileID: 2663395236642878532, guid: 7e5632cdbcf75e84eafa965dda3dcd88, type: 3}
   blackHoleChargePrefab: {fileID: 8399648833885278353, guid: 5081f74f57a7ae2438213e04ab628ee5, type: 3}
   isEnd: 0
+  isClear: 0
 --- !u!4 &45182978
 Transform:
   m_ObjectHideFlags: 0
@@ -877,7 +878,10 @@ MonoBehaviour:
   connectOxygenPrefab: {fileID: 6634543883464934692, guid: b420989f215cb8546b9e8054657703ee, type: 3}
   attackOxygenPrefab: {fileID: 6634543883464934692, guid: 7342ed86f8c1aa547a3c083bdf96c911, type: 3}
   player: {fileID: 0}
-  maxNumber: 10
+  targetNumber: 30
+  getNumber: 0
+  fieldMaxNumber: 20
+  currentNumber: 0
 --- !u!4 &1291675556
 Transform:
   m_ObjectHideFlags: 0
@@ -909,7 +913,7 @@ MonoBehaviour:
   spownDelay: 1
   currentTime: 0
   spownDelayMin: 0.5
-  spownDelayMax: 4
+  spownDelayMax: 3
 --- !u!1 &1310340031
 GameObject:
   m_ObjectHideFlags: 0

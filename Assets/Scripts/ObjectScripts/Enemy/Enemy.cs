@@ -95,6 +95,10 @@ public class Enemy : MonoBehaviour
                     GameObject obj = ScoreManager.scoreManager;
                     obj.GetComponent<ScoreManager>().ScoreDOWN();
 
+                    // î[ïiêîÇå∏è≠
+                    obj = OxygenManager.oxyManager;
+                    obj.GetComponent<OxygenManager>().OxygenNumDOWN();
+
                     heading = new Vector3(0, 0, 0) - transform.position;
                     moveDistance = heading.magnitude;
                     direction = heading / moveDistance;

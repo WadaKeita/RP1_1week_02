@@ -14,27 +14,27 @@ public class ConnectOxygen : MonoBehaviour
         //isOxygenConnect = false;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == ("BlackHole"))
-        {
-            isPlayerConnect = false;
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == ("BlackHole"))
+    //    {
+    //        isPlayerConnect = false;
 
-            // スコアを増加
-            GameObject obj = ScoreManager.scoreManager;
-            obj.GetComponent<ScoreManager>().ScoreUP();
+    //        // スコアを増加
+    //        GameObject obj = ScoreManager.scoreManager;
+    //        obj.GetComponent<ScoreManager>().ScoreUP();
 
-            // ブラックホールのチャージを増加
-            obj = BlackHole.blackHole;
-            obj.GetComponent<BlackHole>().ChargePercentageUP();
+    //        // ブラックホールのチャージを増加
+    //        obj = BlackHole.blackHole;
+    //        obj.GetComponent<BlackHole>().ChargePercentageUP();
 
 
-            OxygenManager.OxygenList.Remove(this.gameObject);
-            // 自分を削除
-            Destroy(this.gameObject);
-        }
+    //        OxygenManager.OxygenList.Remove(this.gameObject);
+    //        // 自分を削除
+    //        Destroy(this.gameObject);
+    //    }
 
-    }
+    //}
 
     //private void OnTriggerExit2D(Collider2D collision)
     //{

@@ -90,17 +90,23 @@ public class OxygenSpown : MonoBehaviour
 
             // クールタイムの計算
             currentTime += Time.deltaTime;
-            if (currentTime >= spownDelay)
+
+            GameObject obj = OxygenManager.oxyManager;
+            if (obj.GetComponent<OxygenManager>().CountOxygen() < OxygenManager.fieldMax &&
+                obj.GetComponent<OxygenManager>().CountOxygen() + obj.GetComponent<OxygenManager>().GetGetNumber() < OxygenManager.targetNum)
             {
-                currentTime = 0;
+                if (currentTime >= spownDelay)
+                {
+                    currentTime = 0;
 
-                // 次のクールタイムをセット
-                UnityEngine.Random.InitState(DateTime.Now.Millisecond);
-                spownDelay = UnityEngine.Random.Range(spownDelayMin, spownDelayMax);
+                    // 次のクールタイムをセット
+                    UnityEngine.Random.InitState(DateTime.Now.Millisecond);
+                    spownDelay = UnityEngine.Random.Range(spownDelayMin, spownDelayMax);
 
-                // ランダム生成
-                SpownOxygen();
+                    // ランダム生成
+                    SpownOxygen();
+                }
+            }
             }
         }
-    }
 }
