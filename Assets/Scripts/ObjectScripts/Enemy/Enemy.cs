@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] public float stealTime = 5.0f;  // ブラックホールに辿り着いて酸素を取るまでの時間
     [SerializeField] public float currentTime = 0;
+    [SerializeField] public float downSpeed = 0.9f;
     float moveDistance;
     float escapeDistance;
 
@@ -114,7 +115,7 @@ public class Enemy : MonoBehaviour
                 var distance = heading.magnitude;
                 direction = heading / escapeDistance;
 
-                moveVelocity = direction * moveSpeed * 0.9f;
+                moveVelocity = direction * moveSpeed * downSpeed;
 
                 GetComponent<Rigidbody2D>().velocity = moveVelocity;
 
