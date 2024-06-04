@@ -20,8 +20,8 @@ public class OxygenSpown : MonoBehaviour
     [Header("ÉXÉ|Å[Éì")]
     [SerializeField] public float spownDelay = 1.0f;    // ïb
     [SerializeField] public float currentTime = 0;    // ç°ÇÃéûä‘
-    [SerializeField] private const float spownDelayMin = 0.5f; // ç≈íZ/ïb
-    [SerializeField] private const float spownDelayMax = 4.0f; // ç≈í∑/ïb
+    [SerializeField] private float spownDelayMin = 0.5f; // ç≈íZ/ïb
+    [SerializeField] private float spownDelayMax = 4.0f; // ç≈í∑/ïb
     #endregion
 
     bool isStartSpown = false;

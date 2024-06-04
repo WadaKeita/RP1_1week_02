@@ -99,9 +99,11 @@ public class Enemy : MonoBehaviour
                     moveDistance = heading.magnitude;
                     direction = heading / moveDistance;
                     Vector3 clonePos = this.transform.position + direction * ((this.transform.localScale.x / 2) + (enemyOxygenPrefab.transform.localScale.x / 2));
-                    // ダメージを食らう敵のクローンを作成
+                    
+                    // 敵の酸素を作成
                     GameObject clone = Instantiate(enemyOxygenPrefab, clonePos, Quaternion.identity);
                     clone.GetComponent<EnemyOxygen>().SetConnect(this.gameObject);
+                    clone.GetComponent<InterlockEnemy>().SetEnemy(this.gameObject);
                 }
 
                 break;
@@ -119,7 +121,7 @@ public class Enemy : MonoBehaviour
 
                 GetComponent<Rigidbody2D>().velocity = moveVelocity;
 
-                if (escapeDistance > MovementRange.movementRadius)
+                if (escapeDistance > MovementRange.movementRadius + this.transform.localScale.x)
                 {
                     Destroy(gameObject);
                 }
