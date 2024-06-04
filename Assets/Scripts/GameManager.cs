@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if(isEnd)
+        //{
+        //    GameObject obj = FadeSceneLoader.fadeSceneLoader;
+        //    StartCoroutine(obj.GetComponent<FadeSceneLoader>().FadeOutAndLoadScene());
+        //}
         // プレイヤーの速度をゲームマネージャーで操作できるかテスト
         // player.GetComponent<Rigidbody2D>().velocity = Vector3.left;
     }
