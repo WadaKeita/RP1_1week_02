@@ -162,5 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oxygenPrefab: {fileID: 6634543883464934692, guid: 75e9a7c5f6639c3459d66619da26d87b, type: 3}
-  attackRB: {fileID: 0}
   stopSpeed: 0.1

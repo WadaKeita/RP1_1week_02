@@ -26,6 +26,7 @@ public class OxygenManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        OxygenList.Clear();
     }
 
     // Update is called once per frame

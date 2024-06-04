@@ -24,15 +24,13 @@ public class ScenemanagerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(gameSceneName);
-                currentScene = gameSceneName;
             }
         }
         if(currentScene == gameSceneName)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                SceneManager.LoadScene(gameSceneName);
-                currentScene = titleSceneName;
+                SceneManager.LoadScene(titleSceneName);
             }
         }
     }
