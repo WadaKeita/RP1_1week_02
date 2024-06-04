@@ -12,6 +12,23 @@ public class Oxygen : MonoBehaviour
     //[Header("酸素")]
     #endregion
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        // ブラックホールに当たったらスコアになる
+        if (collision.gameObject.tag == ("BlackHole"))
+        {
+            // スコアを増加
+            GameObject obj = ScoreManager.scoreManager;
+            obj.GetComponent<ScoreManager>().ScoreUP();
+
+            // ブラックホールのチャージを増加
+            obj = BlackHole.blackHole;
+            obj.GetComponent<BlackHole>().ChargePercentageUP();
+
+            // 自分を削除
+            Destroy(this.gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

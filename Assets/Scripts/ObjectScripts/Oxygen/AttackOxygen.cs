@@ -15,7 +15,8 @@ public class AttackOxygen : MonoBehaviour
     {
         //attackRB.GetComponent<Rigidbody>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         // ブラックホールに当たったらスコアになる
         if (collision.gameObject.tag == ("BlackHole"))
