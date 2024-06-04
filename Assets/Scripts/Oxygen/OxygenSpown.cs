@@ -8,17 +8,20 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 public class OxygenSpown : MonoBehaviour
 {
     //シード値の指定
-    //UnityEngin.Random.InitState(DateTime.Now.Millisecond);
+    //UnityEngine.Random.InitState(DateTime.Now.Millisecond);
     //float型で指定する
-    //UnityEngin.Random.Range(0f,10.0f);//0以上10以下までのflaot型の値を返す
+    //UnityEngine.Random.Range(0f,10.0f);//0以上10以下までのflaot型の値を返す
     //int型で指定する
-    //UnityEngin.Random.Range(0,10);//0以上10未満のint型の値を返す
+    //UnityEngine.Random.Range(0,10);//0以上10未満のint型の値を返す
 
     public GameObject oxygenPrefab;
 
     #region var-Spown
     [Header("スポーン")]
-    [SerializeField] public float spownDelay = 1.0f;
+    [SerializeField] public float spownDelay = 1.0f;    // 秒
+    [SerializeField] public float currentTime = 0;    // 今の時間
+    [SerializeField] private const float spownDelayMin = 0.5f; // 最短/秒
+    [SerializeField] private const float spownDelayMax = 4.0f; // 最長/秒
     #endregion
 
     bool isStartSpown = false;
@@ -32,16 +35,6 @@ public class OxygenSpown : MonoBehaviour
     // ランダムな場所に酸素を生成する
     public void SpownOxygen()
     {
-        //// 現在の時間からシード値を入手
-        //UnityEngine.Random.InitState(DateTime.Now.Millisecond);
-
-        //// 0,1で-か+を判断
-        //UnityEngine.Random.Range(0, 2);//0以上2未満のint型の値を返す
-
-        //// ブラックホールの直径から円の外周までの範囲
-        //UnityEngine.Random.Range(BlackHole.blackHole.gameObject.transform.localScale.x, MovementRange.movementRange.transform.localScale.x / 2.0f);
-        // 指定された半径の円内のランダム位置を取得
-
         GameObject obj = MovementRange.movementRange;
         var circlePos = obj.transform.localScale.x / 2.0f * UnityEngine.Random.insideUnitCircle;
 
@@ -50,6 +43,8 @@ public class OxygenSpown : MonoBehaviour
             circlePos.x, circlePos.y, 0
         );
 
+
+        // すでにあるオブジェクトとの接触判定を取る(blackHole / Player)
         bool isObjectCollision = false;
 
         float distance;
@@ -66,12 +61,13 @@ public class OxygenSpown : MonoBehaviour
 
         if (distance <= radius) { isObjectCollision = true; }
 
-
+        // 接触していたら別の場所に生成する
         if (isObjectCollision)
         {
             SpownOxygen();
             return;
         }
+
         // Prefabを追加
         Instantiate(oxygenPrefab, spawnPos, Quaternion.identity);
     }
@@ -88,10 +84,19 @@ public class OxygenSpown : MonoBehaviour
             }
             isStartSpown = false;
         }
+
         // クールタイムの計算
+        currentTime += Time.deltaTime;
+        if (currentTime >= spownDelay)
+        {
+            currentTime = 0;
 
-        // ランダム生成
+            // 次のクールタイムをセット
+            UnityEngine.Random.InitState(DateTime.Now.Millisecond);
+            spownDelay = UnityEngine.Random.Range(spownDelayMin, spownDelayMax);
 
-        // 次のクールタイムをセット
+            // ランダム生成
+            SpownOxygen();
+        }
     }
 }

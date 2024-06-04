@@ -162,5 +162,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargePercentage: 0
-  chargeIncrease: 10
+  chargeIncrease: 20
   chargeDecrease: 2
