@@ -69,7 +69,6 @@ public class OxygenManager : MonoBehaviour
         }
         foreach (GameObject connect in connects)
         {
-
             GameObject[] oxys = null;
             if (oxys == null)
             {
@@ -101,24 +100,18 @@ public class OxygenManager : MonoBehaviour
             }
         }
 
-
-
         // åqÇ™Ç¡ÇƒÇÈé_ëfÇΩÇøÇÃîªíËÇãÅÇﬂÇÈ
         if (OxygenList.Count > 0)
         {
 
             for (int i = 0; i < OxygenList.Count; i++)
             {
-                //Debug.Log(OxygenList[i]);
-
                 GameObject oxy = OxygenList[i];
 
                 oxy.GetComponent<ConnectOxygen>().SetIsPlayerConnect(false);
             }
             for (int i = 0; i < OxygenList.Count; i++)
             {
-                //Debug.Log(OxygenList[i]);
-
                 GameObject oxy = OxygenList[i];
 
                 // ÉvÉåÉCÉÑÅ[Ç∆Ç‘Ç¬Ç©Ç¡ÇƒÇ¢ÇΩÇÁÉvÉåÉCÉÑÅ[ÉRÉlÉNÉgÇtrueÇ…Ç∑ÇÈ
@@ -176,79 +169,8 @@ public class OxygenManager : MonoBehaviour
 
                     // åqÇ™Ç¡ÇƒÇ¢ÇÈé_ëfÇçÌèú
                     Destroy(oxy.gameObject);
-                    Debug.Log("SKUJO!!!!");
-
                 }
             }
         }
-
-
-
-        //if (OxygenList.Count > 0)
-        //{
-        //    for (int i = 0; i < OxygenList.Count; i++)
-        //    {
-        //        GameObject oxy = OxygenManager.OxygenList[i];
-        //        bool isConnectOxy = oxy.gameObject.GetComponent<ConnectOxygen>().GetIsPlayerConnect();
-        //        if (isConnectOxy == false)
-        //        {
-
-        //            for (int j = 0; j < OxygenList.Count; j++)
-        //            {
-        //                GameObject oxygen = OxygenManager.OxygenList[j];
-
-        //                if (oxygen.gameObject != oxy.gameObject)
-        //                {
-        //                    bool isConnectOxygen = oxygen.gameObject.GetComponent<ConnectOxygen>().GetIsPlayerConnect();
-
-        //                    if (isConnectOxygen == true)
-        //                    {
-        //                        float distance = Vector2.Distance(oxy.transform.position, oxygen.transform.position);
-        //                        float radius = (oxygen.transform.localScale.x / 2) + (oxy.transform.localScale.x / 2);
-        //                        if (distance <= radius)
-        //                        {
-        //                            oxy.GetComponent<ConnectOxygen>().SetIsPlayerConnect(true);
-
-        //                            break;
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
-        //if (OxygenList.Count > 0)
-        //{
-        //    for (int i = 0; i < OxygenList.Count; i++)
-        //    {
-        //        //Debug.Log(OxygenList[i]);
-
-        //        GameObject oxy = OxygenManager.OxygenList[i];
-        //        bool isConnectOxy = oxy.gameObject.GetComponent<ConnectOxygen>().GetIsPlayerConnect();
-
-        //        if (isConnectOxy == false)
-        //        {
-        //            // ó£ÇÍÇΩé_ëfÇí èÌé_ëfÇ…Ç∑ÇÈ
-        //            GameObject clone = Instantiate(attackOxygenPrefab, oxy.gameObject.transform.position, Quaternion.identity);
-
-        //            OxygenManager.OxygenList.Remove(oxy.gameObject);
-
-        //            Vector3 direction = Vector3.zero;
-        //            if (clone.transform.position != Player.player.transform.position)
-        //            {
-        //                direction = clone.transform.position - Player.player.transform.position;
-        //                direction = direction.normalized;
-        //            }
-        //            clone.gameObject.GetComponent<Rigidbody2D>().velocity = direction * 5;
-
-
-
-        //            // åqÇ™Ç¡ÇƒÇ¢ÇÈé_ëfÇçÌèú
-        //            Destroy(oxy.gameObject);
-        //            Debug.Log("SKUJO!!!!");
-        //        }
-        //    }
-        //}
     }
 }

@@ -7,7 +7,6 @@ public class ScoreManager : MonoBehaviour
 {
     public Text Scoretext;
 
-
     #region var-Score
     [Header("スコア管理")]
     [SerializeField] public float increaseScore = 100;  // 獲得スコア
@@ -20,7 +19,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         currentScore = 0;
-        Scoretext.text = "Score：" + currentScore;
+        Scoretext.text = "Score ：" + currentScore;
 
         scoreManager = this.gameObject;
     }
@@ -33,6 +32,6 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Scoretext.text = "Score：" + currentScore;
+        Scoretext.text = "Score ：" + currentScore;
     }
 }

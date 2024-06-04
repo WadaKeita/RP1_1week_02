@@ -36,13 +36,13 @@ public class ConnectOxygen : MonoBehaviour
 
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "ConnectOxygen")
-        {
-            Debug.Log("ó£ÇÍÇΩÅI");
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "ConnectOxygen")
+    //    {
+    //        Debug.Log("ó£ÇÍÇΩÅI");
+    //    }
+    //}
 
     public bool GetIsPlayerConnect()
     {
@@ -56,9 +56,9 @@ public class ConnectOxygen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isPlayerConnect)
-        {
-            Debug.Log("Ç¬Ç»Ç™ÇËÇä¥Ç∂ÇÈ");
-        }
+        //if (isPlayerConnect)
+        //{
+        //    Debug.Log("Ç¬Ç»Ç™ÇËÇä¥Ç∂ÇÈ");
+        //}
     }
 }
