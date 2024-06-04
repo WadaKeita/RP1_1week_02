@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Player : MonoBehaviour
 {
@@ -93,6 +94,18 @@ public class Player : MonoBehaviour
 
         float connectNum = OxygenManager.OxygenList.Count;
         GetComponent<Rigidbody2D>().velocity = moveVelocity * Mathf.Pow(0.9f, connectNum);
+
+        Vector3 posDif = (this.gameObject.transform.position + moveVelocity) - this.gameObject.transform.position;
+        float angle = Mathf.Atan2(posDif.y, posDif.x) * Mathf.Rad2Deg;
+        Vector3 euler = new Vector3(0, 0, angle);
+
+        this.gameObject.transform.rotation = Quaternion.Euler(euler);
+
+        //Vector2 lookDir = moveVelocity - this.transform.position;
+        ////そしてこれでどうやってやるのかというと、Matf.Atan2という関数で距離を使って角度を求められます。
+
+        //float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        //this.gameObject.transform.rotation = new Vector3(angle,0,0);
     }
 
     // Update is called once per frame

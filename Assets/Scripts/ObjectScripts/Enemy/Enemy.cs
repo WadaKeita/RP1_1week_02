@@ -70,67 +70,76 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (nowState)
+
+        GameObject gameManager = GameManager.gameManager;
+        if (gameManager.GetComponent<GameManager>().GetIsEnd() == false)
         {
-            case Status.MOVE:
+            switch (nowState)
+            {
+                case Status.MOVE:
 
-                var heading = new Vector3(0, 0, 0) - transform.position;
-                moveDistance = heading.magnitude;
-                var direction = heading / moveDistance;
+                    var heading = new Vector3(0, 0, 0) - transform.position;
+                    moveDistance = heading.magnitude;
+                    var direction = heading / moveDistance;
 
-                Vector3 moveVelocity = direction * moveSpeed;
+                    Vector3 moveVelocity = direction * moveSpeed;
 
-                GetComponent<Rigidbody2D>().velocity = moveVelocity;
+                    GetComponent<Rigidbody2D>().velocity = moveVelocity;
 
-                break;
+                    break;
 
-            case Status.STEAL:
+                case Status.STEAL:
 
-                currentTime += Time.deltaTime;
-                if (currentTime > stealTime)
-                {
-                    nowState = Status.ESCAPE;
+                    currentTime += Time.deltaTime;
+                    if (currentTime > stealTime)
+                    {
+                        nowState = Status.ESCAPE;
 
-                    // ÉXÉRÉAÇå∏è≠
-                    GameObject obj = ScoreManager.scoreManager;
-                    obj.GetComponent<ScoreManager>().ScoreDOWN();
+                        // ÉXÉRÉAÇå∏è≠
+                        GameObject obj = ScoreManager.scoreManager;
+                        obj.GetComponent<ScoreManager>().ScoreDOWN();
 
-                    // î[ïiêîÇå∏è≠
-                    obj = OxygenManager.oxyManager;
-                    obj.GetComponent<OxygenManager>().OxygenNumDOWN();
+                        // î[ïiêîÇå∏è≠
+                        obj = OxygenManager.oxyManager;
+                        obj.GetComponent<OxygenManager>().OxygenNumDOWN();
+
+                        heading = new Vector3(0, 0, 0) - transform.position;
+                        moveDistance = heading.magnitude;
+                        direction = heading / moveDistance;
+                        Vector3 clonePos = this.transform.position + direction * ((this.transform.localScale.x / 2) + (enemyOxygenPrefab.transform.localScale.x / 2));
+
+                        // ìGÇÃé_ëfÇçÏê¨
+                        GameObject clone = Instantiate(enemyOxygenPrefab, clonePos, Quaternion.identity);
+                        clone.GetComponent<EnemyOxygen>().SetConnect(this.gameObject);
+                        clone.GetComponent<InterlockEnemy>().SetEnemy(this.gameObject);
+                    }
+
+                    break;
+
+                case Status.ESCAPE:
 
                     heading = new Vector3(0, 0, 0) - transform.position;
-                    moveDistance = heading.magnitude;
-                    direction = heading / moveDistance;
-                    Vector3 clonePos = this.transform.position + direction * ((this.transform.localScale.x / 2) + (enemyOxygenPrefab.transform.localScale.x / 2));
-                    
-                    // ìGÇÃé_ëfÇçÏê¨
-                    GameObject clone = Instantiate(enemyOxygenPrefab, clonePos, Quaternion.identity);
-                    clone.GetComponent<EnemyOxygen>().SetConnect(this.gameObject);
-                    clone.GetComponent<InterlockEnemy>().SetEnemy(this.gameObject);
-                }
+                    escapeDistance = heading.magnitude;
 
-                break;
+                    heading = transform.position - new Vector3(0, 0, 0);
+                    var distance = heading.magnitude;
+                    direction = heading / escapeDistance;
 
-            case Status.ESCAPE:
+                    moveVelocity = direction * moveSpeed * downSpeed;
 
-                heading = new Vector3(0, 0, 0) - transform.position;
-                escapeDistance = heading.magnitude;
+                    GetComponent<Rigidbody2D>().velocity = moveVelocity;
 
-                heading = transform.position - new Vector3(0, 0, 0);
-                var distance = heading.magnitude;
-                direction = heading / escapeDistance;
+                    if (escapeDistance > MovementRange.movementRadius + this.transform.localScale.x)
+                    {
+                        Destroy(gameObject);
+                    }
 
-                moveVelocity = direction * moveSpeed * downSpeed;
-
-                GetComponent<Rigidbody2D>().velocity = moveVelocity;
-
-                if (escapeDistance > MovementRange.movementRadius + this.transform.localScale.x)
-                {
-                    Destroy(gameObject);
-                }
-
-                break;
+                    break;
+            }
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 }
