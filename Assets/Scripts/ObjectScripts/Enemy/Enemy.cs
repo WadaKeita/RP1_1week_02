@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     float escapeDistance;
 
     public GameObject enemyDamagePrefab;
+    public GameObject enemyOxygenPrefab;
 
     Status nowState;
     enum Status
@@ -88,6 +89,18 @@ public class Enemy : MonoBehaviour
                 if (currentTime > stealTime)
                 {
                     nowState = Status.ESCAPE;
+
+                    // スコアを減少
+                    GameObject obj = ScoreManager.scoreManager;
+                    obj.GetComponent<ScoreManager>().ScoreDOWN();
+
+                    heading = new Vector3(0, 0, 0) - transform.position;
+                    moveDistance = heading.magnitude;
+                    direction = heading / moveDistance;
+                    Vector3 clonePos = this.transform.position + direction * ((this.transform.localScale.x / 2) + (enemyOxygenPrefab.transform.localScale.x / 2));
+                    // ダメージを食らう敵のクローンを作成
+                    GameObject clone = Instantiate(enemyOxygenPrefab, clonePos, Quaternion.identity);
+                    clone.GetComponent<EnemyOxygen>().SetConnect(this.gameObject);
                 }
 
                 break;

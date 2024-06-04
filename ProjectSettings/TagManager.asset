@@ -10,6 +10,7 @@ TagManager:
   - BlackHole
   - Enemy
   - oxy_BH
+  - EnemyHaveOxygen
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - AttackOxygen
   - BlackHole
   - oxy_BH
-  - 
+  - EnemyHaveOxygen
   - 
   - 
   - 

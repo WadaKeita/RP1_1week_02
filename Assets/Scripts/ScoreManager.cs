@@ -28,6 +28,11 @@ public class ScoreManager : MonoBehaviour
     {
         currentScore += increaseScore;
     }
+    public void ScoreDOWN()
+    {
+        currentScore -= increaseScore;
+        if(currentScore < 0) { currentScore = 0; }
+    }
 
     // Update is called once per frame
     void Update()
