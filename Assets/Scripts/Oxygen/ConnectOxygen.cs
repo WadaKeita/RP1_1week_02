@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class ConnectOxygen : MonoBehaviour
 {
-    public GameObject scoreManager;
-
     public bool isPlayerConnect;
     //public bool isOxygenConnect;
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreManager = ScoreManager.scoreManager;
         isPlayerConnect = false;
         //isOxygenConnect = false;
     }
@@ -23,7 +20,14 @@ public class ConnectOxygen : MonoBehaviour
         {
             isPlayerConnect = false;
 
-            scoreManager.GetComponent<ScoreManager>().ScoreUP();
+            // スコアを増加
+            GameObject obj = ScoreManager.scoreManager;
+            obj.GetComponent<ScoreManager>().ScoreUP();
+
+            // ブラックホールのチャージを増加
+            obj = BlackHole.blackHole;
+            obj.GetComponent<BlackHole>().ChargePercentageUP();
+
 
             OxygenManager.OxygenList.Remove(this.gameObject);
             // 自分を削除

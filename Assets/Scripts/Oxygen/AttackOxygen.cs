@@ -7,7 +7,6 @@ using UnityEngine.UIElements;
 public class AttackOxygen : MonoBehaviour
 {
     public GameObject oxygenPrefab;
-    public GameObject scoreManager;
 
     public float stopSpeed = 0.1f;
 
@@ -15,14 +14,19 @@ public class AttackOxygen : MonoBehaviour
     void Start()
     {
         //attackRB.GetComponent<Rigidbody>();
-        scoreManager = ScoreManager.scoreManager;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // ブラックホールに当たったらスコアになる
         if (collision.gameObject.tag == ("BlackHole"))
         {
-            scoreManager.GetComponent<ScoreManager>().ScoreUP();
+            // スコアを増加
+            GameObject obj = ScoreManager.scoreManager;
+            obj.GetComponent<ScoreManager>().ScoreUP();
+
+            // ブラックホールのチャージを増加
+            obj = BlackHole.blackHole;
+            obj.GetComponent<BlackHole>().ChargePercentageUP();
 
             // 自分を削除
             Destroy(this.gameObject);

@@ -15,7 +15,9 @@ public class TimeManager : MonoBehaviour
     [SerializeField] public float elapsedTime;  // Œ»İ‚ÌŒo‰ßŠÔ
     #endregion
 
-    GameObject gameManager;
+    public GameObject gameManager;
+
+    public static GameObject timeManager;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,11 @@ public class TimeManager : MonoBehaviour
         Timetext.text = "TimeF" + timeLimit;
 
         gameManager = GameManager.gameManager;
+
+        timeManager = this.gameObject;
     }
+
+    public void TimeIncrease() { timeLimit += increaseTime; }
 
     // Update is called once per frame
     void Update()

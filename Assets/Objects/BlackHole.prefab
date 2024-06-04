@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 329020155720935726}
   - component: {fileID: 9175315696659755226}
   - component: {fileID: -4302970643638657200}
+  - component: {fileID: 9010952794641909921}
   m_Layer: 0
   m_Name: BlackHole
   m_TagString: BlackHole
@@ -148,3 +149,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &9010952794641909921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2663395236642878532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30104d3f2282e7940838fa79193de847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargePercentage: 0
+  chargeIncrease: 10
+  chargeDecrease: 2

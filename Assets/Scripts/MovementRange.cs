@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovementRange : MonoBehaviour
@@ -13,6 +14,8 @@ public class MovementRange : MonoBehaviour
     void Start()
     {
         transform.localScale = new Vector3(_maxRadius * 2, _maxRadius * 2, 0);
+
+        movementRange = this.gameObject;
     }
 
     public Vector3 ClampCircle(Vector3 position)
