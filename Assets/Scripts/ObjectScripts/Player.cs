@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] public float downPower = 0.9f; // 付けた酸素の数*n倍
     #endregion
 
-    bool Rtrigger = false;
+    //bool Rtrigger = false;
 
     //public GameObject gameManager;
     // Start is called before the first frame update
@@ -117,13 +117,13 @@ public class Player : MonoBehaviour
         {
             PlayerMove();
 
-            if (Input.GetKeyDown(KeyCode.JoystickButton5))
-            {
-                if (OxygenManager.OxygenList.Count >= 1)
-                {
-                    OxygenShot(shotPower);
-                }
-            }
+            //if (Input.GetKeyDown(KeyCode.JoystickButton5))
+            //{
+            //    if (OxygenManager.OxygenList.Count >= 1)
+            //    {
+            //        OxygenShot(shotPower);
+            //    }
+            //}
             if (Input.GetKeyDown(KeyCode.JoystickButton2))
             {
                 if (OxygenManager.OxygenList.Count >= 1)
@@ -131,17 +131,13 @@ public class Player : MonoBehaviour
                     OxygenLetgo();
                 }
             }
-            else if (Input.GetAxis("L_R_Trigger") > 0 && Rtrigger == false)
+            else if (Input.GetKeyDown(KeyCode.JoystickButton0))
             {
-                Rtrigger = true;
+                //Rtrigger = true;
                 if (OxygenManager.OxygenList.Count >= 1)
                 {
                     OxygenShot(shotPower);
                 }
-            }
-            if (Input.GetAxis("L_R_Trigger") == 0 && Rtrigger == true)
-            {
-                Rtrigger = false;
             }
 
             // プレイヤーのポジションをmovementRangeの中に収める

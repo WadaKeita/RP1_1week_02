@@ -102,7 +102,6 @@ public class OxygenManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-
         GameObject gameManager = GameManager.gameManager;
         if (gameManager.GetComponent<GameManager>().GetIsEnd() == false)
         {

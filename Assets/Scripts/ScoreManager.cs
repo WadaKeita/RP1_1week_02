@@ -13,13 +13,15 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] public float currentScore = 0;  // 現在のスコア
     #endregion
 
+    public static float score;
+
     public static GameObject scoreManager;
 
     // Start is called before the first frame update
     void Start()
     {
         currentScore = 0;
-        Scoretext.text = "Score ：" + currentScore;
+        Scoretext.text = "" + currentScore;
 
         scoreManager = this.gameObject;
     }
@@ -28,6 +30,7 @@ public class ScoreManager : MonoBehaviour
     {
         currentScore += increaseScore;
     }
+
     public void ScoreDOWN()
     {
         currentScore -= increaseScore;
@@ -37,6 +40,8 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Scoretext.text = "Score ：" + currentScore;
+        Scoretext.text = "" + currentScore;
+
+        score = currentScore;
     }
 }

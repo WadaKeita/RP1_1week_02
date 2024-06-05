@@ -30,8 +30,11 @@ public class GameManager : MonoBehaviour
         gameManager = this.gameObject;
     }
 
-    public void SetIsEnd(bool clear) { isEnd = clear; }
+    public void SetIsEnd(bool end) { isEnd = end; }
     public bool GetIsEnd() { return isEnd; }
+
+    public void SetIsClear(bool clear) { isEnd = clear; }
+    public bool SetIsClear() { return isClear; }
 
     // Update is called once per frame
     void Update()

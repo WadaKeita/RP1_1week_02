@@ -8,14 +8,12 @@ public class ScenemanagerScript : MonoBehaviour
     public string currentScene;
     public string titleSceneName;
     public string gameSceneName;
-    public string resultSceneName;
 
     // Start is called before the first frame update
     void Start()
     {
         titleSceneName = "TitleScene";
         gameSceneName = "SampleScene";
-        resultSceneName = "ResultScene";
     }
 
     // Update is called once per frame
@@ -35,15 +33,8 @@ public class ScenemanagerScript : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.JoystickButton0))
                 {
-                    SceneManager.LoadScene(resultSceneName);
+                    SceneManager.LoadScene(titleSceneName);
                 }
-            }
-        }
-        if (currentScene == resultSceneName)
-        {
-            if (Input.GetKeyDown(KeyCode.JoystickButton0))
-            {
-                SceneManager.LoadScene(titleSceneName);
             }
         }
     }

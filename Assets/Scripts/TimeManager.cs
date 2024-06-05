@@ -8,6 +8,8 @@ public class TimeManager : MonoBehaviour
 {
     public Text Timetext;
 
+    public Image Insekitext;
+
     #region var-Time
     [Header("éûä‘ä«óù")]
     [SerializeField] public float timeLimit;  // êßå¿éûä‘(ïb)
@@ -18,11 +20,12 @@ public class TimeManager : MonoBehaviour
     //public GameObject gameManager;
 
     public static GameObject timeManager;
+    float pos = 335.9f;
 
     // Start is called before the first frame update
     void Start()
     {
-        Timetext.text = "TimeÅF" + timeLimit;
+        Timetext.text = "" + timeLimit;
 
         //gameManager = GameManager.gameManager;
 
@@ -47,7 +50,9 @@ public class TimeManager : MonoBehaviour
                 gameManager.GetComponent<GameManager>().SetIsEnd(true);
             }
 
-            Timetext.text = "TimeÅF" + Mathf.Ceil(timeLimit - elapsedTime);
+            Timetext.text = "" + Mathf.Ceil(timeLimit - elapsedTime);
         }
+
+        Insekitext.transform.position = new Vector3(pos - +((250 / timeLimit) * elapsedTime), Insekitext.transform.position.y, Insekitext.transform.position.z);
     }
 }
